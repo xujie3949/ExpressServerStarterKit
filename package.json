@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "clean": "rimraf dist",
-    "compile": "npm run clean && babel src -d dist",
+    "clean": "shx rm -rf ./dist",
+    "compile": "npm run clean && babel src -d dist -D",
     "start": "better-npm-run start",
     "dev": "better-npm-run dev",
     "test": "better-npm-run test -- --watch",
@@ -13,23 +13,23 @@
   },
   "betterScripts": {
     "dev": {
-      "command": "nodemon ./src --exec babel-node ./src/bin/server.js",
+      "command": "nodemon --exec babel-node ./src/bin/server.js",
       "env": {
         "NODE_ENV": "development",
-        "DEBUG": "express:*"
+        "DEBUG": "*"
       }
     },
     "start": {
       "command": "npm run compile && node ./dist/bin/server.js",
       "env": {
-        "DEBUG": "express:*"
+        "DEBUG": "*"
       }
     },
     "test": {
       "command": "node ./node_modules/karma/bin/karma start build/karma.conf",
       "env": {
         "NODE_ENV": "test",
-        "DEBUG": "express:*"
+        "DEBUG": "*"
       }
     }
   },
@@ -73,6 +73,7 @@
     "nyc": "^8.3.0",
     "phantomjs-prebuilt": "^2.1.12",
     "rimraf": "^2.5.4",
+    "shelljs": "^0.7.4",
     "shx": "^0.1.4",
     "sinon": "^1.17.5",
     "sinon-chai": "^2.8.0",

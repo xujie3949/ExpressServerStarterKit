@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
+import module1 from './module1';
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+function setupRoute(app) {
+  app.use('/module1', module1);
+}
 
-module.exports = router;
+export default setupRoute;
