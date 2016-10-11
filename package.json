@@ -7,7 +7,7 @@
     "compile": "npm run clean && babel src -d dist -D",
     "start": "better-npm-run start",
     "dev": "better-npm-run dev",
-    "test": "better-npm-run test -- --watch",
+    "test": "mocha -w --compilers js:babel-register tests",
     "lint": "eslint ./src ./tests",
     "lint:fix": "npm run lint -- --fix"
   },
@@ -22,13 +22,6 @@
     "start": {
       "command": "npm run compile && node ./dist/bin/server.js",
       "env": {
-        "DEBUG": "*"
-      }
-    },
-    "test": {
-      "command": "node ./node_modules/karma/bin/karma start build/karma.conf",
-      "env": {
-        "NODE_ENV": "test",
         "DEBUG": "*"
       }
     }
@@ -47,6 +40,7 @@
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.16.3",
     "babel-runtime": "^6.11.6",
     "better-npm-run": "0.0.11",
     "chai": "^3.4.1",
